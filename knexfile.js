@@ -29,17 +29,17 @@ module.exports = {
     },
   },
 
-  production: {
-    client: "sqlite3",
-    connection: {
-      filename: "./database/auth.db3",
-    },
-    useNullAsDefault: true,
-    migrations: {
-      directory: "./database/migrations",
-    },
-    seeds: {
-      directory: "./database/seeds",
-    },
-  },
+  // production: {
+  //   client: "sqlite3",
+  //   connection: {
+  //     filename: "./database/auth.db3",
+  //   },
+  //   useNullAsDefault: true,
+  //   migrations: {
+  //     directory: "./database/migrations",
+  //   },
+  //   seeds: {
+  //     directory: "./database/seeds",
+  //   },
+  // },
 };
