@@ -83,19 +83,20 @@ This logs in a user, it will return the 202 message below with a token, this tok
 ```
 
 ### Responses
-```
-<div>Code: 202 (Successful Login)</div>
+
+Code: 202 (Successful Login)
 {
    "message": "Welcome jsmith!",
    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imtsb2NrIiwiaWF0IjoxNTgyODE1NzEyLCJleHAiOjE1ODI4MTkzMTJ9.YaduCwtuESqfPocXdzS2ggRZVxF9lQ5fB0lh7DpXQb8"
 }
-
+```
 Code: 401 (Unauthorized)
 {
    "message": "Invalid username or password"
 }
-
+```
 Code: 500 (Internal Server Error)
 {
    "message": "Internal Server Error, Error Returned: <error>"
 }
+```
