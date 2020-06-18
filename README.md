@@ -39,3 +39,63 @@ This registers a new user, it will return the 201 message below with a token, th
   "username": "jsmith",
 
 }
+
+In order to decode the token, you need to install jwt-decode https://github.com/auth0/jwt-decode and install
+```
+npm i jwt-decode
+```
+
+### Example
+```
+{
+   "username": "jsmith",
+   "password": "jsmith"
+}
+```
+
+### Responses
+```
+Code: 201 (Created)
+{
+   "message": "Registration successful jsmith!",
+   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imtsb2NrIiwiaWF0IjoxNTgyODE1NzEyLCJleHAiOjE1ODI4MTkzMTJ9.YaduCwtuESqfPocXdzS2ggRZVxF9lQ5fB0lh7DpXQb8"
+}
+
+Code: 500 (Internal Server Error)
+{
+   "message": "Internal Server Error, Error Returned: <error>"
+}
+```
+
+## Login (Non-protected)
+**HTTP Method:** *POST*
+
+**URL:** */auth/login*
+
+This logs in a user, it will return the 202 message below with a token, this token needs to be stored in Local Storage.  The token contains the following data
+
+### Example
+```
+{
+   "username": "jsmith",
+   "password": "jsmith"
+}
+```
+
+### Responses
+```
+<div>Code: 202 (Successful Login)</div>
+{
+   "message": "Welcome jsmith!",
+   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imtsb2NrIiwiaWF0IjoxNTgyODE1NzEyLCJleHAiOjE1ODI4MTkzMTJ9.YaduCwtuESqfPocXdzS2ggRZVxF9lQ5fB0lh7DpXQb8"
+}
+
+Code: 401 (Unauthorized)
+{
+   "message": "Invalid username or password"
+}
+
+Code: 500 (Internal Server Error)
+{
+   "message": "Internal Server Error, Error Returned: <error>"
+}
