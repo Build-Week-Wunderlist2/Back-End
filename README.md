@@ -1,7 +1,7 @@
 # Back-End
 
 
-<h2>Root URl: https://todolist1213.herokuapp.com/</h2>
+<h2>Root URl: https://todolist1213.herokuapp.com/api</h2>
 
 
 
@@ -9,7 +9,8 @@
 | ------ | ------------------------------------- | -------------------- |
 | POST   | Create a user account                 | /auth/register       |
 | POST   | Login a user                          | /auth/login          |
-| get    | gets todo lists                       | /todos               |
+| get    | gets todo lists                       | /user/todos          |
+| POST   | post a new todo list                  | /auth/login          |
 
 
 <h2>user structure</h2>
@@ -21,13 +22,13 @@
 | username | string  | Yes                     |
 | password | string  | Yes                     |
 
-
 when posting body should look like this
+```
 {
     username:"string",
     password:"string"
 }
-
+```
 
 
 **URL:** */auth/register*
@@ -39,7 +40,7 @@ This registers a new user, it will return the 201 message below with a token, th
   "username": "jsmith",
 
 }
-
+```
 In order to decode the token, you need to install jwt-decode https://github.com/auth0/jwt-decode and install
 ```
 npm i jwt-decode
@@ -57,9 +58,11 @@ npm i jwt-decode
 ```
 Code: 201 (Created)
 {
-   "message": "Registration successful jsmith!",
-   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imtsb2NrIiwiaWF0IjoxNTgyODE1NzEyLCJleHAiOjE1ODI4MTkzMTJ9.YaduCwtuESqfPocXdzS2ggRZVxF9lQ5fB0lh7DpXQb8"
-}
+  "data": {
+    "id": 1,
+    "username": "jsmith",
+    "password": "$2a$08$LMBshNiKwunQj4zST4Nwc.NSyBJRwAKRmE14IUqkh8yZwPIpEinB2"
+  }
 
 Code: 500 (Internal Server Error)
 {
@@ -72,7 +75,7 @@ Code: 500 (Internal Server Error)
 
 **URL:** */auth/login*
 
-This logs in a user, it will return the 202 message below with a token, this token needs to be stored in Local Storage.  The token contains the following data
+This logs in a user, it will return the 200 message below with a token, this token needs to be stored in Local Storage.  The token contains the following data
 
 ### Example
 ```
@@ -84,18 +87,21 @@ This logs in a user, it will return the 202 message below with a token, this tok
 
 ### Responses
 
-Code: 202 (Successful Login)
+Code: 200 (Successful Login)
+```
 {
-   "message": "Welcome jsmith!",
+   "message": "Welcome to our api",
    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imtsb2NrIiwiaWF0IjoxNTgyODE1NzEyLCJleHAiOjE1ODI4MTkzMTJ9.YaduCwtuESqfPocXdzS2ggRZVxF9lQ5fB0lh7DpXQb8"
 }
 ```
 Code: 401 (Unauthorized)
+```
 {
    "message": "Invalid username or password"
 }
 ```
 Code: 500 (Internal Server Error)
+```
 {
    "message": "Internal Server Error, Error Returned: <error>"
 }
