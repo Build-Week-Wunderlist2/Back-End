@@ -9,7 +9,7 @@ module.exports = {
 };
 
 function find() {
-  return db("todos").orderBy("id");
+  return db("todos");
 }
 
 function findBy(filter) {
