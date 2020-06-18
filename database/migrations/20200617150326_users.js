@@ -12,12 +12,36 @@ exports.up = function(knex) {
     .createTable('todos', tbl => {
         tbl.increments();
         
-        tbl.string('Todo lists', 255).notNullable();
-        tbl.string('description', 255).notNullable();
+        tbl.string('Title', 255).notNullable();
+        tbl.boolean('complete').defaultTo(false);
+        tbl.integer('user_id')
+                      .unsigned()
+                      .notNullable()
+                     
+                      .references('users.id')
+                     
+                      .onDelete('CASCADE')
+                      .onUpdate('CASCADE');
     })
+    .createTable('task', tbl => {
+             
+      tbl.increments();
+      tbl.string('description', 255);
+      tbl.boolean('complete').defaultTo(false);
+      tbl.integer('task_id')
+                    .unsigned()
+                    .notNullable()
+                   
+                    .references('todos.id')
+                   
+                    .onDelete('CASCADE')
+                    .onUpdate('CASCADE');
+  })
   };
   
   exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('users');
+    return knex.schema.dropTableIfExists('task')
+          .dropTableIfExists('todos')
+          .dropTableIfExists('users')
   };
   

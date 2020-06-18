@@ -6,6 +6,8 @@ module.exports = {
   find,
   findBy,
   findById,
+  addTodo,
+  findListById
 };
 
 function find() {
@@ -26,6 +28,20 @@ async function add(user) {
   }
 }
 
+async function addTodo(todoList) {
+  try {
+    const [id] = await db("todos").insert(todoList, "id");
+
+    return findListById(id);
+  } catch (error) {
+    throw error;
+  }
+}
+
 function findById(id) {
   return db("users").where({ id }).first();
+}
+
+function findListById(id) {
+  return db("todos").where({ id }).first();
 }
