@@ -30,12 +30,11 @@ module.exports = {
   },
 
   production: {
-    client: "pg",
-    connection: pgConnection,
-    pool: {
-      min: 2,
-      max: 10,
+    client: "sqlite3",
+    connection: {
+      filename: "./database/auth.db3",
     },
+    useNullAsDefault: true,
     migrations: {
       directory: "./database/migrations",
     },
