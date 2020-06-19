@@ -29,8 +29,28 @@ when posting body should look like this
     password:"string"
 }
 ```
+<h2>todo lists structure</h2>
+
+### todos Table
+| Key      | Type    | Required                |
+| -------- | ------- | ----------------------- |
+| id       | integer | Yes (server controlled) |
+| title    | string  | Yes                     |
+| user_id  | integer  | yes (foreing key)                    |
+| complete | boolean | no                      |
+| date     | dateTime| yes(server created)     |
+
+### task Table
+| Key      | Type    | Required                |
+| -------- | ------- | ----------------------- |
+| id       | integer | Yes (server controlled) |
+| title    | string  | Yes                     |
+| todo_id  | integer | yes                    |
+| complete | boolean | no                      |
+| date     | dateTime| yes(server created)     |
 
 
+## Register (Non-protected)
 **URL:** */auth/register*
 
 This registers a new user, it will return the 201 message below with a token, this token needs to be stored in Local Storage.  The token contains the following data
@@ -41,10 +61,7 @@ This registers a new user, it will return the 201 message below with a token, th
 
 }
 ```
-In order to decode the token, you need to install jwt-decode https://github.com/auth0/jwt-decode and install
-```
-npm i jwt-decode
-```
+
 
 ### Example
 ```

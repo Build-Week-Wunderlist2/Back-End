@@ -3,16 +3,13 @@ const db = require("../database/dbConfig.js");
 
 module.exports = {
   add,
-  find,
   findBy,
   findById,
   addTodo,
   findListById
 };
 
-function find() {
-  return db("todos").orderBy("id");
-}
+
 
 function findBy(filter) {
   return db("users").where(filter).orderBy("id");
@@ -30,18 +27,26 @@ async function add(user) {
 
 async function addTodo(todoList) {
   try {
-    const [id] = await db("todos").insert(todoList, "id");
+    const [id] = await db("todos").insert(todoList);
 
-    return findListById(id);
+    return findTodoById(id);
   } catch (error) {
     throw error;
   }
 }
-
+function findTodoById(id) {
+  return db("todos").where({ id }).first();
+}
 function findById(id) {
   return db("users").where({ id }).first();
 }
 
+
 function findListById(id) {
-  return db("todos").where({ id }).first();
+
+    return db('todos as t')
+      .join('users as u', 't.user_id', 'u.id')
+      .select('t.user_id', 't.Title', 't.complete', 'u.id as id' )
+      .where({ user_id: id });
+  
 }

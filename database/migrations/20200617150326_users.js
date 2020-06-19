@@ -11,8 +11,8 @@ exports.up = function(knex) {
     })
     .createTable('todos', tbl => {
         tbl.increments();
-        
-        tbl.string('Title', 255).notNullable();
+        tbl.datetime('date');
+        tbl.string('title', 255).notNullable();
         tbl.boolean('complete').defaultTo(false);
         tbl.integer('user_id')
                       .unsigned()
@@ -26,6 +26,7 @@ exports.up = function(knex) {
     .createTable('task', tbl => {
              
       tbl.increments();
+      tbl.datetime('date')
       tbl.string('description', 255);
       tbl.boolean('complete').defaultTo(false);
       tbl.integer('task_id')
