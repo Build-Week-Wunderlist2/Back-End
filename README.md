@@ -40,6 +40,16 @@ when posting body should look like this
 | complete | boolean | no                      |
 | date     | dateTime| yes(server created)     |
 
+when posting body should look like this
+```
+{
+ 
+   title:"string",
+   complete:Boolean(defaults to false if not entered),
+   user_id:#(comes back in body of login)
+   }
+```
+
 ### task Table
 | Key      | Type    | Required                |
 | -------- | ------- | ----------------------- |
@@ -107,8 +117,9 @@ This logs in a user, it will return the 200 message below with a token, this tok
 Code: 200 (Successful Login)
 ```
 {
-   "message": "Welcome to our api",
-   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imtsb2NrIiwiaWF0IjoxNTgyODE1NzEyLCJleHAiOjE1ODI4MTkzMTJ9.YaduCwtuESqfPocXdzS2ggRZVxF9lQ5fB0lh7DpXQb8"
+  "message": "Welcome to our API",
+  "user_id": 1,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJ1c2VybmFtZSI6ImhhcHB5MTIiLCJpYXQiOjE1OTI1OTk4NzUsImV4cCI6MTU5MjYwNzA3NX0.XFr-ooacIB5Q4tCNBXMhYussBPXLM0eaeaO7RBQHTTk"
 }
 ```
 Code: 401 (Unauthorized)
@@ -128,12 +139,79 @@ Code: 500 (Internal Server Error)
 
 **URL:** */user/todos*
 
-This logs in a user, it will return the 200 message below with a token, this token needs to be stored in Local Storage.  The token contains the following data
+This creates a new todo list
 
 ### Example
 ```
+
+  {
+   id:Number(server made),
+   title:"string",
+   complete:Boolean(defaults to false if not entered),
+   date:auto generated
+   }
+
+```
+### Responses
+
+Code: 200 (Successfuly added todo list)
+```
 {
-   "username": "jsmith",
-   "password": "jsmith"
+  "id": #,
+  "date": null,
+  "title": "string",
+  "complete": 0 or 1,
+  "user_id": 1
 }
+```
+
+## get todo list's (protected)
+**HTTP Method:** *GET*
+
+**URL:** */user/:id/todos*
+
+### Responses
+
+Code: 200 (Successfuly retrieval)
+```
+[
+  {
+    "user_id": 1,
+    "title": "string",
+    "complete": 0,
+    "date": null,
+    "id": 1
+  },
+  {
+    "user_id": 1,
+    "title": "string ",
+    "complete": 0,
+    "date": null,
+    "id": 2
+  }
+
+]
+```
+## Update a todo list (protected)
+**HTTP Method:** *PUT*
+
+**URL:** */user/todos/:id*
+
+This updates a todo list by id
+
+### Example
+```
+
+  {
+   id:#(from url parameters),
+   title:"string",
+   complete:Boolean(defaults to false if not entered),
+   }
+
+```
+### Responses
+
+Code: 200 (Successfuly updated todo list)
+```
+returns the id # that was updated.
 ```

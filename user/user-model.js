@@ -6,7 +6,9 @@ module.exports = {
   findBy,
   findById,
   addTodo,
-  findListById
+  findListById,
+  updateTodos,
+  removeTodos
 };
 
 
@@ -25,6 +27,10 @@ async function add(user) {
   }
 }
 
+function findById(id) {
+  return db("users").where({ id }).first();
+}
+
 async function addTodo(todoList) {
   try {
     const [id] = await db("todos").insert(todoList, "id");
@@ -34,19 +40,27 @@ async function addTodo(todoList) {
     throw error;
   }
 }
-function findTodoById(user_id) {
-  return db("todos").where({ user_id }).first();
+function findTodoById(id) {
+  return db("todos").where({ id }).first();
 }
-function findById(id) {
-  return db("users").where({ id }).first();
-}
-
 
 function findListById(id) {
 
     return db('todos as t')
       .join('users as u', 't.user_id', 'u.id')
-      .select('t.user_id', 't.title', 't.complete', 'u.id as id' )
+      .select('t.user_id', 't.title', 't.complete','t.date', 't.id as id' )
       .where({ user_id: id });
   
+}
+
+function updateTodos(id, changes) {
+  return db('todos')
+    .where({ id })
+    .update(changes);
+}
+
+function removeTodos(id) {
+  return db('todos')
+    .where('id', id)
+    .del();
 }

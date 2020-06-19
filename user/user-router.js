@@ -26,9 +26,23 @@ router.get("/:id/todos", restricted,  (req, res) => {
     .catch(err => res.status(500).json({ message:"API Error", error: err.message}));
 });
 
-// function checkToDoInfo(body){
-//   return Boolean(body.Title)
-//   }
+router.put('/todos/:id', restricted, (req, res) => {
+  const changes = req.body;
+  Todos.updateTodos(req.params.id, changes)
+  .then(post => {
+    if (post) {
+      res.status(200).json(post);
+    } else {
+      res.status(404).json({ message: 'The post could not be found' });
+    }
+  })
+  .catch(error => {
+    // log error to database
+    console.log(error);
+    res.status(500).json({
+      message: 'Error updating the post',
+    });
+  });});
 
 module.exports = router;
 
