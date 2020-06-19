@@ -27,15 +27,15 @@ async function add(user) {
 
 async function addTodo(todoList) {
   try {
-    const [id] = await db("todos").insert(todoList);
+    const [user_id] = await db("todos").insert(todoList);
 
-    return findTodoById(id);
+    return findTodoById(user_id);
   } catch (error) {
     throw error;
   }
 }
-function findTodoById(id) {
-  return db("todos").where({ id }).first();
+function findTodoById(user_id) {
+  return db("todos").where({ user_id }).first();
 }
 function findById(id) {
   return db("users").where({ id }).first();
