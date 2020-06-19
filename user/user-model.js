@@ -27,9 +27,9 @@ async function add(user) {
 
 async function addTodo(todoList) {
   try {
-    const [user_id] = await db("todos").insert(todoList);
+    const [id] = await db("todos").insert(todoList, "id");
 
-    return findTodoById(user_id);
+    return findTodoById(id);
   } catch (error) {
     throw error;
   }
