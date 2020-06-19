@@ -46,7 +46,7 @@ function findListById(id) {
 
     return db('todos as t')
       .join('users as u', 't.user_id', 'u.id')
-      .select('t.user_id', 't.Title', 't.complete', 'u.id as id' )
+      .select('t.user_id', 't.title', 't.complete', 'u.id as id' )
       .where({ user_id: id });
   
 }

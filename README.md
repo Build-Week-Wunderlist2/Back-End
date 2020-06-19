@@ -36,7 +36,7 @@ when posting body should look like this
 | -------- | ------- | ----------------------- |
 | id       | integer | Yes (server controlled) |
 | title    | string  | Yes                     |
-| user_id  | integer  | yes (foreing key)                    |
+| user_id  | integer  | yes (foreing key)      |
 | complete | boolean | no                      |
 | date     | dateTime| yes(server created)     |
 
@@ -44,8 +44,8 @@ when posting body should look like this
 | Key      | Type    | Required                |
 | -------- | ------- | ----------------------- |
 | id       | integer | Yes (server controlled) |
-| title    | string  | Yes                     |
-| todo_id  | integer | yes                    |
+| description | string  | Yes                  |
+| todo_id  | integer | yes                     |
 | complete | boolean | no                      |
 | date     | dateTime| yes(server created)     |
 
@@ -121,5 +121,19 @@ Code: 500 (Internal Server Error)
 ```
 {
    "message": "Internal Server Error, Error Returned: <error>"
+}
+```
+## Create a todo list (protected)
+**HTTP Method:** *POST*
+
+**URL:** */user/todos*
+
+This logs in a user, it will return the 200 message below with a token, this token needs to be stored in Local Storage.  The token contains the following data
+
+### Example
+```
+{
+   "username": "jsmith",
+   "password": "jsmith"
 }
 ```
