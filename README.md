@@ -10,7 +10,13 @@
 | POST   | Create a user account                 | /auth/register       |
 | POST   | Login a user                          | /auth/login          |
 | get    | gets todo lists                       | /user/todos          |
-| POST   | post a new todo list                  | /auth/login          |
+| POST   | post a new todo list                  | /user/:id/todos      |
+| GET    | get a list of todo list's             | /user/todos/:id      |
+| put    | update a todo list                    | /user/todos/:id      |
+| DELETE | delete a todo list                    | /user/todos/:id      |
+| POST   | post a new task to list               | /user/task           |
+| GET    | get a list of tasks                   | /user/:id/task       |
+| DELETE | delete a task                         | /user/:id/task       |
 
 
 <h2>user structure</h2>
