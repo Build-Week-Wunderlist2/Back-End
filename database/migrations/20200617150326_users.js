@@ -14,7 +14,9 @@ exports.up = function(knex) {
         tbl.datetime('date');
         tbl.string('title', 255).notNullable();
         tbl.boolean('complete').defaultTo(false);
+        tbl.date('deadline');
         tbl.integer('user_id')
+        
                       .unsigned()
                       .notNullable()
                      
@@ -29,6 +31,10 @@ exports.up = function(knex) {
       tbl.datetime('date')
       tbl.string('description', 255);
       tbl.boolean('complete').defaultTo(false);
+      tbl.boolean('repeatsDaily').defaultTo(false);
+      tbl.boolean('repeatsWeekly').defaultTo(false);
+      tbl.boolean('repeatsMonthly').defaultTo(false);
+      tbl.date('deadline');
       tbl.integer('task_id')
                     .unsigned()
                     .notNullable()

@@ -44,6 +44,57 @@ router.put('/todos/:id', restricted, (req, res) => {
     });
   });});
 
+  router.delete('/todos/:id', (req, res) => {
+    Todos.removeTodos(req.params.id)
+    .then(count => {
+      if (count > 0) {
+        res.status(200).json({ message: 'The post has been removed' });
+      } else {
+        res.status(404).json({ message: 'The post could not be found' });
+      }
+    })
+    .catch(error => {
+      // log error to database
+      console.log(error);
+      res.status(500).json({
+        message: 'Error removing the post',
+      });
+    });});
+
+    router.post("/task", restricted, (req, res) => {
+  
+      console.log(req.body);
+      Todos.addTask(req.body)
+        .then(task => {
+          res.status(200).json(task);
+        })
+        .catch(err => res.status(500).json({ message:"API Error", error: err.message}));
+    });
+
+    router.get("/:id/task", restricted,  (req, res) => {
+      Todos.findAllTaskById(req.params.id)
+        .then(task => {
+          res.status(200).json(task);
+        })
+        .catch(err => res.status(500).json({ message:"API Error", error: err.message}));
+    });
+
+    router.delete('/task/:id', (req, res) => {
+      Todos.removeTask(req.params.id)
+      .then(count => {
+        if (count > 0) {
+          res.status(200).json({ message: 'The post has been removed' });
+        } else {
+          res.status(404).json({ message: 'The post could not be found' });
+        }
+      })
+      .catch(error => {
+        // log error to database
+        console.log(error);
+        res.status(500).json({
+          message: 'Error removing the post',
+        });
+      });});
 module.exports = router;
 
 

@@ -8,7 +8,11 @@ module.exports = {
   addTodo,
   findListById,
   updateTodos,
-  removeTodos
+  removeTodos,
+  addTask,
+  findTaskById,
+  findAllTaskById,
+  removeTask
 };
 
 
@@ -61,6 +65,34 @@ function updateTodos(id, changes) {
 
 function removeTodos(id) {
   return db('todos')
+    .where('id', id)
+    .del();
+}
+
+async function addTask(task) {
+  try {
+    const [id] = await db("task").insert(task, "id");
+
+    return findTaskById(id);
+  } catch (error) {
+    throw error;
+  }
+}
+function findTaskById(id) {
+  return db("task").where({ id }).first();
+}
+
+function findAllTaskById(id) {
+
+  return db('task as t')
+    .join('todos as u', 't.task_id', 'u.id')
+    .select('t.task_id', 't.description', 't.complete','t.date', 't.id as id' )
+    .where({ task_id: id });
+
+}
+
+function removeTask(id) {
+  return db('task')
     .where('id', id)
     .del();
 }

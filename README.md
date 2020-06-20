@@ -215,3 +215,80 @@ Code: 200 (Successfuly updated todo list)
 ```
 returns the id # that was updated.
 ```
+## Create a task (protected)
+**HTTP Method:** *POST*
+
+**URL:** */user/task*
+
+This creates a new task list
+
+### Example
+```
+
+  {
+   id:Number(server made),
+   description:"string",
+   complete:Boolean(defaults to false if not entered),
+   date:auto generated
+   }
+
+```
+### Responses
+
+Code: 200 (Successfuly added task list)
+```
+{
+  "id": #,
+  "date": null,
+  "description": "string",
+  "complete": 0 or 1,
+  "task_id": 1
+}
+```
+
+
+## get all task on list (protected)
+**HTTP Method:** *get*
+
+**URL:** */user/task*
+
+This creates a new task list
+
+### Example
+```
+
+  {
+   id:Number(server made),
+   description:"string",
+   complete:Boolean(defaults to false if not entered),
+   date:auto generated
+   }
+
+```
+### Responses
+
+Code: 200 (Successfuly added task list)
+```
+{
+  "id": #,
+  "date": null,
+  "description": "string",
+  "complete": 0 or 1,
+  "task_id": 1
+}
+```
+
+## delete a task  (protected)
+**HTTP Method:** *DELETE*
+
+**URL:** */user/task/:id*
+
+This deletes a task by id
+
+
+### Responses
+
+Code: 200 (Successfuly dieleted task)
+```
+returns the id # that was updated.
+```
