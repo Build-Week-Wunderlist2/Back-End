@@ -58,6 +58,12 @@ when posting body should look like this
 | todo_id  | integer | yes                     |
 | complete | boolean | no                      |
 | date     | dateTime| yes(server created)     |
+| deadline | date    | yes(server created)     |
+|repeatsDaily | boolean | no                   |
+|repeatsWeakly | boolean | no                  |
+|repeatsMonthly | boolean | no                 |
+
+From what i can tell you can set the repeats daily/weekly/monthly to true or false and I will set it up on my end to repeat the .post at those intervals. 
 
 
 ## Register (Non-protected)
@@ -288,7 +294,7 @@ This deletes a task by id
 
 ### Responses
 
-Code: 200 (Successfuly dieleted task)
+Code: 200 (Successfuly deleted task)
 ```
 returns the id # that was updated.
 ```
