@@ -46,7 +46,7 @@ when posting body should look like this
 | complete | boolean | no                      |
 | date     | dateTime| yes(server created)     |
 
-when posting body should look like this
+when posting body should look like this. Dont forget to include token in the header when making request to protected routes!
 ```
 {
  
@@ -242,6 +242,7 @@ This creates a new task list
    description:"string",
    complete:Boolean(defaults to false if not entered),
    date:auto generated
+   task_id:#(id from response when you create a new todo list)
    }
 
 ```

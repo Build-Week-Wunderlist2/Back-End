@@ -11,7 +11,7 @@ exports.up = function(knex) {
     })
     .createTable('todos', tbl => {
         tbl.increments();
-        tbl.datetime('date');
+        tbl.timestamps([true], [true])
         tbl.string('title', 255).notNullable();
         tbl.boolean('complete').defaultTo(false);
         tbl.date('deadline');
@@ -28,7 +28,7 @@ exports.up = function(knex) {
     .createTable('task', tbl => {
              
       tbl.increments();
-      tbl.datetime('date')
+      tbl.timestamps([true], [true])
       tbl.string('description', 255);
       tbl.boolean('complete').defaultTo(false);
       tbl.boolean('repeatsDaily').defaultTo(false);
