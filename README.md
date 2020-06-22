@@ -63,8 +63,8 @@ when posting body should look like this. Dont forget to include token in the hea
 | description | string  | Yes                  |
 | todo_id  | integer | yes                     |
 | complete | boolean | no                      |
-| date     | dateTime| yes(server created)     |
-| deadline | date    | yes(server created)     |
+| created_at| dateTime| yes(server created)     |
+| deadline | date      | no                      |
 |repeatsDaily | boolean | no                   |
 |repeatsWeakly | boolean | no                  |
 |repeatsMonthly | boolean | no                 |
