@@ -263,9 +263,9 @@ Code: 200 (Successfuly added task list)
 ## get all task on list (protected)
 **HTTP Method:** *get*
 
-**URL:** */user/task*
+**URL:** */user/:id/task*
 
-This creates a new task list
+This gets all tasks 
 
 ### Example
 ```
@@ -285,6 +285,7 @@ Code: 200 (Successfuly added task list)
 {
   "id": #,
   "date": null,
+  "title":"title of todo list"
   "description": "string",
   "complete": 0 or 1,
   "task_id": 1
