@@ -15,8 +15,8 @@
 | put    | update a todo list                    | /user/todos/:id      |
 | DELETE | delete a todo list                    | /user/todos/:id      |
 | POST   | post a new task to list               | /user/task           |
-| GET    | get a list of tasks                   | /user/:id/task       |
-| DELETE | delete a task                         | /user/:id/task       |
+| GET    | get a list of tasks                   | /user/:id/task(id of todo list you want)       |
+| DELETE | delete a task                         | /user/task/:id       |
 
 
 <h2>user structure</h2>
@@ -42,9 +42,9 @@ when posting body should look like this
 | -------- | ------- | ----------------------- |
 | id       | integer | Yes (server controlled) |
 | title    | string  | Yes                     |
-| user_id  | integer  | yes (foreing key)      |
+| user_id  | integer | yes (foreing key)       |
 | complete | boolean | no                      |
-| date     | dateTime| yes(server created)     |
+| created_at | dateTime| yes(server created)   |
 
 when posting body should look like this. Dont forget to include token in the header when making request to protected routes!
 ```
@@ -60,7 +60,7 @@ when posting body should look like this. Dont forget to include token in the hea
 | Key      | Type    | Required                |
 | -------- | ------- | ----------------------- |
 | id       | integer | Yes (server controlled) |
-| description | string  | Yes                  |
+|description | string  | Yes                  |
 | todo_id  | integer | yes                     |
 | complete | boolean | no                      |
 | created_at| dateTime| yes(server created)     |
@@ -160,7 +160,11 @@ This creates a new todo list
    id:Number(server made),
    title:"string",
    complete:Boolean(defaults to false if not entered),
-   date:auto generated
+   created_at:auto generated,
+   repeatsWeakly:boolean,
+   repeatsDaily:boolean,
+   repeatsMonthly:boolean
+
    }
 
 ```
@@ -191,14 +195,14 @@ Code: 200 (Successfuly retrieval)
     "user_id": 1,
     "title": "string",
     "complete": 0,
-    "date": null,
+    "created_at": null,
     "id": 1
   },
   {
     "user_id": 1,
     "title": "string ",
     "complete": 0,
-    "date": null,
+    "created_at": null,
     "id": 2
   }
 
@@ -241,7 +245,7 @@ This creates a new task list
    id:Number(server made),
    description:"string",
    complete:Boolean(defaults to false if not entered),
-   date:auto generated
+   created_at:auto generated
    task_id:#(id from response when you create a new todo list)
    }
 
@@ -252,10 +256,13 @@ Code: 200 (Successfuly added task list)
 ```
 {
   "id": #,
-  "date": null,
+  "created_at": null,
   "description": "string",
   "complete": 0 or 1,
-  "task_id": 1
+  "task_id": 1,
+  repeatsWeakly: boolean,
+   repeatsDaily: boolean,
+   repeatsMonthly: boolean
 }
 ```
 
@@ -284,7 +291,7 @@ Code: 200 (Successfuly added task list)
 ```
 {
   "id": #,
-  "date": null,
+  "created_at": null,
   "title":"title of todo list"
   "description": "string",
   "complete": 0 or 1,

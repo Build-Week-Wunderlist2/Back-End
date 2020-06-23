@@ -96,3 +96,9 @@ function removeTask(id) {
     .where('id', id)
     .del();
 }
+
+function updateTask(id, changes) {
+  return db('task')
+    .where({ id })
+    .update(changes);
+}
