@@ -79,7 +79,6 @@ This registers a new user, it will return the 201 message below with a token, th
 
 
 ### Example
-```
 {
    "username": "jsmith",
    "password": "jsmith"
