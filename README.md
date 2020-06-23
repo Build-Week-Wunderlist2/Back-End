@@ -11,7 +11,7 @@
 | POST   | Login a user                          | /auth/login          |
 | get    | gets todo lists                       | /user/todos          |
 | POST   | post a new todo list                  | /user/:id/todos      |
-| GET    | get a list of todo list's             | /user/todos/:id      |
+| GET    | get a list of todo list's             | /user/:id/todos      |
 | put    | update a todo list                    | /user/todos/:id      |
 | DELETE | delete a todo list                    | /user/todos/:id      |
 | POST   | post a new task to list               | /user/task           |
