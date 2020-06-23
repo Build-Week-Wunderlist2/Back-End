@@ -9,7 +9,6 @@
 | ------ | ------------------------------------- | -------------------- |
 | POST   | Create a user account                 | /auth/register       |
 | POST   | Login a user                          | /auth/login          |
-| get    | gets todo lists                       | /user/todos          |
 | POST   | post a new todo list                  | /user/todos      |
 | GET    | get a list of todo list's             | /user/:id/todos      |
 | put    | update a todo list                    | /user/todos/:id      |
@@ -76,12 +75,6 @@ From what i can tell you can set the repeats daily/weekly/monthly to true or fal
 **URL:** */auth/register*
 
 This registers a new user, it will return the 201 message below with a token, this token needs to be stored in Local Storage.  The token contains the following data
-```
-{
-  "userid": 2,
-  "username": "jsmith",
-
-}
 ```
 
 
@@ -174,9 +167,10 @@ Code: 200 (Successfuly added todo list)
 ```
 {
   "id": #,
-  "date": null,
+  "created_at": null,
   "title": "string",
   "complete": 0 or 1,
+  "deadline":date,
   "user_id": 1
 }
 ```
