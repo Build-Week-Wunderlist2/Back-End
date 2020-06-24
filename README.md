@@ -297,6 +297,9 @@ Code: 200 (Successfuly added task list)
   description: "string",
   complete: 0 or 1,
   task_id: 1
+  repeatsWeakly:boolean,
+  repeatsDaily:boolean,
+  repeatsMonthly:boolean
 }
 ```
 
