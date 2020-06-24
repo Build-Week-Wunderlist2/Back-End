@@ -1,4 +1,3 @@
-  
 const router = require("express").Router();
 const jwt = require('jsonwebtoken');
 const Todos = require("./user-model.js");
@@ -33,7 +32,7 @@ router.put('/todos/:id', restricted, (req, res) => {
     if (post) {
       res.status(200).json(post);
     } else {
-      res.status(404).json({ message: 'The post could not be found' });
+      res.status(404).json({ message: 'The list could not be found' });
     }
   })
   .catch(error => {
@@ -48,9 +47,9 @@ router.put('/todos/:id', restricted, (req, res) => {
     Todos.removeTodos(req.params.id)
     .then(count => {
       if (count > 0) {
-        res.status(200).json({ message: 'The post has been removed' });
+        res.status(200).json({ message: 'The list has been removed' });
       } else {
-        res.status(404).json({ message: 'The post could not be found' });
+        res.status(404).json({ message: 'The list could not be found' });
       }
     })
     .catch(error => {
@@ -83,9 +82,9 @@ router.put('/todos/:id', restricted, (req, res) => {
       Todos.removeTask(req.params.id)
       .then(count => {
         if (count > 0) {
-          res.status(200).json({ message: 'The post has been removed' });
+          res.status(200).json({ message: 'The task has been removed' });
         } else {
-          res.status(404).json({ message: 'The post could not be found' });
+          res.status(404).json({ message: 'The task could not be found' });
         }
       })
       .catch(error => {
@@ -103,14 +102,14 @@ router.put('/todos/:id', restricted, (req, res) => {
           if (post) {
             res.status(200).json(post);
           } else {
-            res.status(404).json({ message: 'The post could not be found' });
+            res.status(404).json({ message: 'The task could not be found' });
           }
         })
         .catch(error => {
           // log error to database
           console.log(error);
           res.status(500).json({
-            message: 'Error updating the post',
+            message: 'Error updating the task',
           });
         });});
 module.exports = router;
