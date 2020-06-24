@@ -17,6 +17,7 @@
 | POST   | post a new task to list               | /user/task           |
 | GET    | get a list of tasks                   | /user/:id/task(id of todo list you want)       |
 | DELETE | delete a task                         | /user/task/:id       |
+| put    | update a task by id                    | /user/task/:id      |
 
 
 <h2>user structure</h2>
@@ -78,8 +79,8 @@ From what i can tell you can set the repeats daily/weekly/monthly to true or fal
 This registers a new user, it will return the 201 message below with a token, this token needs to be stored in Local Storage.  The token contains the following data
 ```
 {
-  "userid": 2,
-  "username": "jsmith",
+  userid: 2,
+  username: "jsmith",
 
 }
 ```
@@ -88,8 +89,8 @@ This registers a new user, it will return the 201 message below with a token, th
 ### Example
 ```
 {
-   "username": "jsmith",
-   "password": "jsmith"
+   username: "jsmith",
+   password: "jsmith"
 }
 ```
 
@@ -119,8 +120,8 @@ This logs in a user, it will return the 200 message below with a token, this tok
 ### Example
 ```
 {
-   "username": "jsmith",
-   "password": "jsmith"
+   username: "jsmith",
+   password: "jsmith"
 }
 ```
 
@@ -192,18 +193,18 @@ Code: 200 (Successfuly retrieval)
 ```
 [
   {
-    "user_id": 1,
-    "title": "string",
-    "complete": 0,
-    "created_at": null,
-    "id": 1
+    user_id: 1,
+    title: "string",
+    complete: 0,
+    created_at: null,
+    id: 1
   },
   {
-    "user_id": 1,
-    "title": "string ",
-    "complete": 0,
-    "created_at": null,
-    "id": 2
+    user_id: 1,
+    title: string ,
+    complete: 0,
+    created_at: null,
+    id: 2
   }
 
 ]
@@ -255,11 +256,11 @@ This creates a new task list
 Code: 200 (Successfuly added task list)
 ```
 {
-  "id": #,
-  "created_at": null,
-  "description": "string",
-  "complete": 0 or 1,
-  "task_id": 1,
+  id": #,
+  created_at: null,
+  description: "string",
+  complete: 0 or 1,
+  task_id: 1,
   repeatsWeakly: boolean,
    repeatsDaily: boolean,
    repeatsMonthly: boolean
@@ -290,12 +291,12 @@ This gets all tasks
 Code: 200 (Successfuly added task list)
 ```
 {
-  "id": #,
-  "created_at": null,
-  "title":"title of todo list"
-  "description": "string",
-  "complete": 0 or 1,
-  "task_id": 1
+  id: #,
+  created_at: null,
+  title:"title of todo list"
+  description: "string",
+  complete: 0 or 1,
+  task_id: 1
 }
 ```
 
@@ -310,6 +311,30 @@ This deletes a task by id
 ### Responses
 
 Code: 200 (Successfuly deleted task)
+```
+returns the id # that was updated.
+```
+
+## Update a task list (protected)
+**HTTP Method:** *PUT*
+
+**URL:** */user/task/:id*
+
+This updates a todo list by id
+
+### Example
+```
+
+  {
+   id:#(from url parameters),
+   description:"string",
+   complete:Boolean
+   }
+
+```
+### Responses
+
+Code: 200 (Successfuly updated ta task)
 ```
 returns the id # that was updated.
 ```
