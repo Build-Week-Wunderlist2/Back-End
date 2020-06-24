@@ -87,7 +87,7 @@ function findAllTaskById(id) {
 
   return db('task as t')
     .join('todos as u', 't.task_id', 'u.id')
-    .select('t.task_id', 't.description', 't.complete','t.created_at', 'u.title', 't.repeatsDaily','t.repeatsMonthly','t.repeatsWeakly','t.id as id' )
+    .select('t.task_id', 't.description', 't.complete','t.created_at', 'u.title', 't.repeatsDaily','t.repeatsMonthly','t.repeatsWeekly','t.id as id' )
     .where({ task_id: id });
 
 }
