@@ -67,7 +67,7 @@ when posting body should look like this. Dont forget to include token in the hea
 | created_at| dateTime| yes(server created)     |
 | deadline | date      | no                      |
 |repeatsDaily | boolean | no                   |
-|repeatsWeakly | boolean | no                  |
+|repeatsWeekly | boolean | no                  |
 |repeatsMonthly | boolean | no                 |
 
 From what i can tell you can set the repeats daily/weekly/monthly to true or false and I will set it up on my end to repeat the .post at those intervals. 
@@ -162,7 +162,7 @@ This creates a new todo list
    title:"string",
    complete:Boolean(defaults to false if not entered),
    created_at:auto generated,
-   repeatsWeakly:boolean,
+   repeatsWeekly:boolean,
    repeatsDaily:boolean,
    repeatsMonthly:boolean
 
@@ -261,7 +261,7 @@ Code: 200 (Successfuly added task list)
   description: "string",
   complete: 0 or 1,
   task_id: 1,
-  repeatsWeakly: boolean,
+  repeatsWeekly: boolean,
    repeatsDaily: boolean,
    repeatsMonthly: boolean
 }
@@ -297,7 +297,7 @@ Code: 200 (Successfuly added task list)
   description: "string",
   complete: 0 or 1,
   task_id: 1
-  repeatsWeakly:boolean,
+  repeatsWeekly:boolean,
   repeatsDaily:boolean,
   repeatsMonthly:boolean
 }
